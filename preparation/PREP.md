@@ -8,6 +8,10 @@
 
 ## Related Works
 
+###### [Improved Learning of Chinese Word Embeddings with Semantic Knowledge](https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjU946I2prWAhXBG5QKHfifDOkQFggkMAA&url=http%3A%2F%2Fwww.springer.com%2Fcda%2Fcontent%2Fdocument%2Fcda_downloaddocument%2F9783319258157-c2.pdf%3FSGWID%3D0-0-45-1544914-p177761955&usg=AFQjCNGC-pQUxrdY-zZWxk8Rwy9qf1HExw)
+
+_* 14th China National Conference, CCL 2015 and Third International Symposium, NLP-NABD 2015_
+
 ###### [Word2Vec using Character n-grams](https://web.stanford.edu/class/cs224n/reports/2761021.pdf)
 
 _* Student report for course CS224n in Stanford University_
