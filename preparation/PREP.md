@@ -12,6 +12,18 @@
 
 _* 14th China National Conference, CCL 2015 and Third International Symposium, NLP-NABD 2015_
 
+###### [Joint Learning of Character and Word Embeddings](http://nlp.csai.tsinghua.edu.cn/~lzy/publications/ijcai2015_character.pdf)
+
+_*IJCAI'15 Proceedings of the 24th International Conference on Artificial Intelligence_
+
+- Model
+  - Character-enhanced word embedding model (CWE)
+- Difficulties
+  - Ambiguity of Chinese characters
+    - Multiple-prototype: multiple vectors for the same character with different meanings
+  - Not semantically compositional Chinese words e.g. transliterated words, single-morpheme multi-character word, entity names
+    - Prebuild a word list of those words, treat them as a whole when training
+
 ###### [Word2Vec using Character n-grams](https://web.stanford.edu/class/cs224n/reports/2761021.pdf)
 
 _* Student report for course CS224n in Stanford University_
@@ -54,6 +66,11 @@ _* Student report for course CS224n in Stanford University_
   - Languages
   - Extrinsic evaluation
 
+## Open Source Reference
+
+- [Chinese word vectors](https://github.com/candlewill/Chinsese_word_vectors)
+  - `Word2vec` and `GloVe` tools to train word vectors for Chinese using data from wikipedia dump
+  
 ## Glossary
 
 - [Out of Vocabulary (OOV)](http://www.festvox.org/bsv/x1407.html)
