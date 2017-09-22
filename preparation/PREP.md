@@ -6,6 +6,13 @@
 
 ## Schedule
 
+||Work|
+|:-:|:-|
+|Sep|* Background knowledge & related work study</br> * Detailed project plan & strategy|
+|Oct - Dec|* work2vec implementation & result visualization</br> * Analysis of word vector relationships</br> * Chinese dictionary construction from vector relationships</br> * Evaluation & refinement|
+|Jan - Mar|* Apply techniques to Chinese work segmentation</br> * Evaluation & refinement|
+|Apr|* Report|
+
 ## Related Works
 
 ###### [Improved Learning of Chinese Word Embeddings with Semantic Knowledge](https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjU946I2prWAhXBG5QKHfifDOkQFggkMAA&url=http%3A%2F%2Fwww.springer.com%2Fcda%2Fcontent%2Fdocument%2Fcda_downloaddocument%2F9783319258157-c2.pdf%3FSGWID%3D0-0-45-1544914-p177761955&usg=AFQjCNGC-pQUxrdY-zZWxk8Rwy9qf1HExw)
