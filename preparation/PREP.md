@@ -15,63 +15,70 @@
 
 ## Related Works
 
-###### [Improved Learning of Chinese Word Embeddings with Semantic Knowledge](https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjU946I2prWAhXBG5QKHfifDOkQFggkMAA&url=http%3A%2F%2Fwww.springer.com%2Fcda%2Fcontent%2Fdocument%2Fcda_downloaddocument%2F9783319258157-c2.pdf%3FSGWID%3D0-0-45-1544914-p177761955&usg=AFQjCNGC-pQUxrdY-zZWxk8Rwy9qf1HExw)
+#### English
 
-_* 14th China National Conference, CCL 2015 and Third International Symposium, NLP-NABD 2015_
+###### [Word2Vec using Character n-grams](https://web.stanford.edu/class/cs224n/reports/2761021.pdf), Student report for course CS224n in Stanford University
 
-###### [Joint Learning of Character and Word Embeddings](http://nlp.csai.tsinghua.edu.cn/~lzy/publications/ijcai2015_character.pdf)
-
-_*IJCAI'15 Proceedings of the 24th International Conference on Artificial Intelligence_
-
+- Intro
+  - `word2vec` difficult for good representations of rare words & dealing with `out of vocabulary` words (treated as `UNK`)
 - Model
-  - Character-enhanced word embedding model (CWE)
-- Difficulties
-  - Ambiguity of Chinese characters
-    - Multiple-prototype: multiple vectors for the same character with different meanings
-  - Not semantically compositional Chinese words e.g. transliterated words, single-morpheme multi-character word, entity names
-    - Prebuild a word list of those words, treat them as a whole when training
-
-###### [Word2Vec using Character n-grams](https://web.stanford.edu/class/cs224n/reports/2761021.pdf)
-
-_* Student report for course CS224n in Stanford University_
-
-1. Intro
-  - __Issues__ of the current `word2vec` model
-    - Difficult for good representations of rare words
-    - Dealing with `out of vocabulary` words (treated as `UNK`)
-      - Especially important in morphologically rich languages
-  - Proposed __experiment__
-    - `n-grams` enhanced `word2vec` using `skip-gram` approach for English words
-  - __Advantages__ of n-gram model
-    - Takes into account structure of words
-  - __Evaluation method__
-    - Compared with conventional skip-gram model baseline
-2. Work
-  - Model
-    - Converting words to n-grams  
-      ![](https://github.com/pyliaorachel/word2vec-chinese-dictionary/blob/master/preparation/img/Word2Vec_using_Character_n-grams_1.png?raw=true)
-      
-    - Computation of word vector representation  
-      ![](https://github.com/pyliaorachel/word2vec-chinese-dictionary/blob/master/preparation/img/Word2Vec_using%20Character_n-grams_2.png?raw=true)
-      
-    - Model training & evaluation  
-      ![](https://github.com/pyliaorachel/word2vec-chinese-dictionary/blob/master/preparation/img/Word2Vec_using%20Character_n-grams_3.png?raw=true)
-  - Dataset
-    - Training
-      - `text8`
-    - Word similarity
-      - `WordSimilarity-353 Test Collection`
-    - Word analogy
-      - `Googles word2vec code archive`
-3. Conclusion
+  - Converting words to n-grams  
+  - Computation of word vector representation  
+  - Model training & evaluation  
+- Dataset
+  - Training
+    - [text8]()
+  - Word similarity
+    - [WordSimilarity-353 Test Collection]()
+  - Word analogy
+    - [Googles word2vec code archive]()
+- Conclusion
   - Slightly better in word similarity & word analogy tasks
   - Not better than benchmark by [Bojanowski et al.](https://arxiv.org/abs/1607.04606)
     - Probably due to the amount of data trained on (50M v.s. 17M tokens)
     - `n-gram` can be useful for training over small amount of data
-4. Future Work
-  - Dataset size
-  - Languages
-  - Extrinsic evaluation
+
+#### Chinese
+
+###### [Joint Learning of Character and Word Embeddings](http://nlp.csai.tsinghua.edu.cn/~lzy/publications/ijcai2015_character.pdf), IJCAI'15 Proceedings of the 24th International Conference on Artificial Intelligence
+
+- Intro
+  - Internal characters + external contexts, joint learning of character & word embeddings
+- Difficulties
+  - Ambiguity of Chinese characters
+    - Multiple-prototype: multiple vectors for the same character with different meanings
+      - Position-based character embeddings
+      - Cluster-based character embeddings
+      - Nonparametric cluster-based character embeddings
+  - Not semantically compositional Chinese words e.g. transliterated words, single-morpheme multi-character word, entity names
+    - Prebuild a word list of those words, treat them as a whole when training
+- Model
+  - Character-enhanced word embedding model (CWE)
+- Dataset
+  - Embedding learning
+    - [The People’s Daily]()
+- Conclusion
+  - Enhanced performance in word relatedness computation & analogical reasoning
+  
+###### [Improved Learning of Chinese Word Embeddings with Semantic Knowledge](https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjU946I2prWAhXBG5QKHfifDOkQFggkMAA&url=http%3A%2F%2Fwww.springer.com%2Fcda%2Fcontent%2Fdocument%2Fcda_downloaddocument%2F9783319258157-c2.pdf%3FSGWID%3D0-0-45-1544914-p177761955&usg=AFQjCNGC-pQUxrdY-zZWxk8Rwy9qf1HExw), 14th China National Conference, CCL 2015 and Third International Symposium, NLP-NABD 2015
+
+- Intro
+  - Previous morpheme- & character-based models used addition as composition function
+  - Design new composition functions using the semantic relations between characters
+  - Based on semantic categories and relations derived from `Tongyi Cilin` (a Chinese semantic thesaurus)
+- Model
+  - Compositional Chinese word embeddings (CCWE)
+    - Category-based (C-CCWE)
+      - What category the character is in?
+    - Relation-based (R-CCWE)
+      - What relationship (B biased, E biased, unbiased) is the word of?
+- Dataset
+  - Embedding learning
+    - [The People’s Daily]()
+  - Document classification
+    - [Chinese Encyclopedia]()
+- Conclusion
+  - Outperforms baselines on word similarity, word analogy, & document classification tasks
 
 ## Open Source Reference
 
