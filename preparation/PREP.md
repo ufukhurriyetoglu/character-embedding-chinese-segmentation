@@ -15,6 +15,34 @@
 
 ## Related Works
 
+### Chinese Segmentation
+
+###### [Parsing the Internal Structure of Words: A New Paradigm for Chinese Word Segmentation](http://www.aclweb.org/anthology/P11-1141), HLT '11 Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies
+
+- Intro
+  - Current word segmentation recognizes the word boundaries
+    - Different annotation standards -> inconsistency
+    - Applications have different requirements for granularity of words
+    - Many phenomena in Chinese e.g. 大中小學, 游完泳
+    - Head driven statistical parsers, dealing with out-of-vocabulary words easier with structure e.g. 英格蘭人
+  - Cannot store all word structures in a dictionary -> need dynamic mechanism
+- Model
+  - Find `argmax` of `T` in joint probability `Pr(T, S)`, `T = parse tree`, `S = raw sentence`
+  - Generate `S`
+    - Generate constituent structures
+    - Generate words with internal structures
+    - Generate flat words
+where T is a parse tree c
+- Dataset
+  - Training
+    - [Penn Chinese Treebank (CTB) 5.0]()
+- Conclusion
+  - New paradigm: shift from flat word identification to structure parsing 
+    - Statistical parsing technology
+    - Development of large scale treebanks
+
+### Character-based Word Embedding
+
 #### English
 
 ###### [Word2Vec using Character n-grams](https://web.stanford.edu/class/cs224n/reports/2761021.pdf), Student report for course CS224n in Stanford University
