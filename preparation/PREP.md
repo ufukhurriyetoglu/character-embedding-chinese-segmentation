@@ -60,11 +60,13 @@ where T is a parse tree c
     - [WordSimilarity-353 Test Collection]()
   - Word analogy
     - [Googles word2vec code archive]()
-- Conclusion
-  - Slightly better in word similarity & word analogy tasks
-  - Not better than benchmark by [Bojanowski et al.](https://arxiv.org/abs/1607.04606)
-    - Probably due to the amount of data trained on (50M v.s. 17M tokens)
-    - `n-gram` can be useful for training over small amount of data
+- Evaluation
+  - Word similarity & word analogy tasks
+    - Slightly bette
+  - Not betterenchmark by [Bojanowski et al.](https://arxiv.org/abs/1607.04606)
+    - Not better
+      - Probably due to the amount of data trained on (50M v.s. 17M tokens)
+      - `n-gram` can be useful for training over small amount of data
 
 #### Chinese
 
@@ -85,8 +87,9 @@ where T is a parse tree c
 - Dataset
   - Embedding learning
     - [The People’s Daily]()
-- Conclusion
-  - Enhanced performance in word relatedness computation & analogical reasoning
+- Evaluation
+  - Word relatedness computation & analogical reasoning
+    - Enhanced performance
   
 ###### [Improved Learning of Chinese Word Embeddings with Semantic Knowledge](https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjU946I2prWAhXBG5QKHfifDOkQFggkMAA&url=http%3A%2F%2Fwww.springer.com%2Fcda%2Fcontent%2Fdocument%2Fcda_downloaddocument%2F9783319258157-c2.pdf%3FSGWID%3D0-0-45-1544914-p177761955&usg=AFQjCNGC-pQUxrdY-zZWxk8Rwy9qf1HExw), 14th China National Conference, CCL 2015 and Third International Symposium, NLP-NABD 2015
 
@@ -105,8 +108,31 @@ where T is a parse tree c
     - [The People’s Daily]()
   - Document classification
     - [Chinese Encyclopedia]()
+- Evaluation
+  - Word similarity, word analogy, & document classification tasks
+    - Outperforms baselines
+
+###### [Learning Character-level Compositionality with Visual Features](http://www.aclweb.org/anthology/P/P17/P17-1188.pdf), ACL 2017
+
+- Intro
+  - Models calculating morphologysensitive word representations have been found effective
+    - Learn more robust representations for rare words by exploiting morphological patterns
+  - Compositionality of sub-character units can be found in logographic writing systems e.g. Han and Kanji characters used in Chinese and Japanese
+  - Investigate the feasibility of modeling the compositionality of characters
+- Model
+  - Character Unicode representation -> its shape as an image
+  - Calculate a representation of the image using CNNs
+  - Fusion models
+    - Early Fusion
+    - Late Fusion
+    - Fallback Fusion
+- Dataset
+  - Wikipedia article title in Chinese, Japanese, or Korean
+- Evaluation
+  - Downstream task: classifying Wikipedia titles for Chinese, Japanese, and Korean
+    - Outperforms a baseline model that uses standard character embeddings for instances containing rare characters
 - Conclusion
-  - Outperforms baselines on word similarity, word analogy, & document classification tasks
+  - Representations effective under low-resource scenarios & complementary with standard character embeddings
 
 ## Open Source Reference
 
