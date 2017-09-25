@@ -41,6 +41,26 @@ where T is a parse tree c
     - Statistical parsing technology
     - Development of large scale treebanks
 
+###### [Chinese Parsing Exploiting Characters](http://ir.hit.edu.cn/~car/papers/acl13-chpar.pdf), ACL 2013
+
+- Intro
+  - Given an input Chinese sentence, produces its character-level syntax trees
+  - Allow word segmentation, part-of-speech (POS) tagging & parsing to be performed jointly using an CKY-style or shift-reduce algorithm
+- Model
+  - Based on the discriminative shift-reduce parser of [Zhang and Clark (2009; 2011)](), which is a transition-based model for lexicalized constituent parsing; use a beam-search decoder s.t. the transition action sequence can be globally optimized
+    - Adding more transition actions
+    - Defining novel features that capture character information
+- Dataset
+  - [CTB5]()
+- Evaluation
+  - Segmentation, POS tagging & parsing
+    - Performed simultaneously
+    - Significantly outperforms a pipelined baseline
+- Conclusion
+  - Annotated the internal structures of Chinese words; extend CTB-style constituent trees into character-level trees using their annotations
+  - Developed a character-based parsing model that can produce character-level constituent trees; jointly performs word segmentation, POS tagging & syntactic parsing
+  - Improved parsing accuracies compared to pipelined baseline
+
 ### Character-based Word Embedding
 
 #### English
