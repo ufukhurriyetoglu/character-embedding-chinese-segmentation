@@ -17,6 +17,14 @@
 
 ### Chinese Segmentation
 
+###### [Character-Level Dependencies in Chinese: Usefulness and Learning](http://www.aclweb.org/anthology/E09-1100), EACL '09 Proceedings of the 12th Conference of the European Chapter of the Association for Computational Linguistics
+
+To show that character-level dependency can be a good alternative to word boundary representation for Chinese. Annotated internal dependencies even bring performance enhancement.
+
+1. Word segmentation task can be effectively re-formularized into character-level dependency parsing
+2. Consider annotated character dependencies inside a word; a parser can still effectively capture both these annotated internal character dependencies & trivial external dependencies that are transformed from word boundaries
+3. A full annotated character dependency tree can be constructed over all possible character pairs within a given sequence
+
 ###### [Parsing the Internal Structure of Words: A New Paradigm for Chinese Word Segmentation](http://www.aclweb.org/anthology/P11-1141), HLT '11 Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies
 
 - Intro
@@ -96,6 +104,30 @@ where T is a parse tree c
   - `csmRNN`
     - Balance well between syntactic & semantic e.g. return `undesired` for `unaffected` but not `unaffected` for `affected`
 
+###### [Compositional Morphology for Word Representations and Language Modelling](http://proceedings.mlr.press/v32/botha14.pdf), ICML'14 Proceedings of the 31st International Conference on International Conference on Machine Learning
+
+- Intro
+  - Focus on continuous space language models (CSLM)
+  - Strikes a balance between probabilistic language modelling & morphology-based representation learning
+  - Executed in the context of a log-bilinear (LBL) LM
+  - Sped up by word classing 
+- Model
+  - Additive log-bilinear model (`LBL++`): additive word representations + log-bilinear language models
+    - Vector: imperfection = im + perfect + ion
+  - `LBL+o`: factorises output words and retains simple word vectors for the context
+  - `LBL+c`: factorises context words
+  - Class-based model (`CLBL`)
+    - Brown clustering to partition the vocabulary into `|C|` classes
+  - `CLBL++`
+- Evaluation
+  - Word Similarity Rating
+    - Outperforming `csmRNN` for one set of embeddings for initialization
+    - Simple linear probabilistic model suitable for integration directly into a decoder for translation
+    - Trained from scratch on much less data
+    - Directly applicable to languages which not yet having those initializations available
+  - Machine Translation
+    - Improved consistently across six language pairs when using CSLMs during decoding
+    - Morphology-based representations led to further improvements beyond the level of optimiser variance only for `English → Czech`
 
 ###### [Word2Vec using Character n-grams](https://web.stanford.edu/class/cs224n/reports/2761021.pdf), Student report for course CS224n in Stanford University
 
@@ -196,3 +228,5 @@ where T is a parse tree c
 - [Out of Vocabulary (OOV)](http://www.festvox.org/bsv/x1407.html)
 - [Morphologically Rich Languages (MRL)](https://www.quora.com/When-is-a-language-said-to-be-morphologically-rich)
 - [Byte pair encoding](https://en.wikipedia.org/wiki/Byte_pair_encoding)
+- Continuous Space Language Models (CSLM) - umbrella term for the LMs that represent words with real-valued vectors
+- [Log Bi-linear Model (LBM)](http://blog.leanote.com/post/nanjiang/Log-biliearn-model)
