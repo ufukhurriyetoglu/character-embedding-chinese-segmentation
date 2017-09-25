@@ -45,6 +45,38 @@ where T is a parse tree c
 
 #### English
 
+###### [Better Word Representations with Recursive Neural Networks for Morphology](https://nlp.stanford.edu/~lmthang/data/papers/conll13_morpho.pdf), Conference on Computational Natural Language Learning (CoNLL 2013)
+
+- Intro
+  - Existing clusterings and embeddings represent well frequent words, but badly model rare ones
+  - Treat each morpheme as a basic unit in the RNNs, construct representations for morphologically complex words on the fly from their morphemes
+  - Able to build representations for new unseen words comprised of known morphemes
+- Model
+  - Morphological RNNs `morphoRNN`
+    - Context-insensitive Morphological RNN `cimRNN`
+    - Context-sensitive Morphological RNN `csmRNN`
+      - Stack the `NLM` on top of `morphoRNN`
+  - Initializing word representations
+    - [C & W (Collobert et al., 2011)]()
+    - [HSMN, (Huang et al., 2012)]()
+- Dataset
+  - Word Similarity Task
+    - [WordSim-353 (Finkelstein et al., 2002)]()
+    - [MC (Miller and Charles, 1991)]()
+    - [RG (Rubenstein and Goodenough, 1965)]()
+    - [SCWS*11 (Huang et al., 2012)]()
+    - [Rare word (RW) dataset]()
+- Evaluation
+  - `csmRNN` consistently improves correlations over `cimRNN`
+    - Effectiveness of using surrounding contexts in learning both morphological syntactics & semantics
+  - Outperforms baselines by a good margin for all datasets (except SCWS*)
+  - `cimRNN` 
+    - Well enforce structural agreement among related words e.g. return `V-ing` words for `commenting`, `JJ-ness` words for “heartlessness
+    - Cluster words sharing the same stem together e.g. `affected` & `unaffected`
+  - `csmRNN`
+    - Balance well between syntactic & semantic e.g. return `undesired` for `unaffected` but not `unaffected` for `affected`
+
+
 ###### [Word2Vec using Character n-grams](https://web.stanford.edu/class/cs224n/reports/2761021.pdf), Student report for course CS224n in Stanford University
 
 - Intro
