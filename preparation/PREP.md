@@ -231,3 +231,8 @@ where T is a parse tree c
 - Continuous Space Language Models (CSLM) - umbrella term for the LMs that represent words with real-valued vectors
 - [Log Bi-linear Model (LBM)](http://blog.leanote.com/post/nanjiang/Log-biliearn-model)
 - [Autoencoder](https://www.doc.ic.ac.uk/~js4416/163/website/nlp/)
+
+## Other Links
+
+- [word2vec Explained: Deriving Mikolov et al.’s Negative-Sampling Word-Embedding Method](https://arxiv.org/pdf/1402.3722v1.pdf)
+- [Word and Phrase Representations](https://www.doc.ic.ac.uk/~js4416/163/website/nlp/word-phrase.html)
