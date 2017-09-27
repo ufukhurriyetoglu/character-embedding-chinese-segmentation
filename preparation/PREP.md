@@ -279,6 +279,10 @@ where T is a parse tree c
 - Conclusion
   - Representations effective under low-resource scenarios & complementary with standard character embeddings
 
+## Uncomprehensable
+
+- [Parsing with Compositional Vector Grammars](http://www.socher.org/uploads/Main/SocherBauerManningNg_ACL2013.pdf), ACL 2013
+
 ## Open Source Reference
 
 - [Chinese word vectors](https://github.com/candlewill/Chinsese_word_vectors)
