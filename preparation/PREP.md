@@ -17,6 +17,37 @@
 
 ### Chinese Segmentation
 
+###### [Chinese Word Segmentation as Character Tagging](https://pdfs.semanticscholar.org/67d0/e055b2de82743e2c9ea6eece65bf4a03b248.pdf), Computational Linguistics and Chinese Language Processing 2003
+
+- Previous works
+  - Purely dictionary-based
+    - Maximum matching algorithm
+      - Greedy search, walks through a sentence, find the longest matching entry in dictionary
+    - Problems
+      - Out-of-vocabulary words not dealt with
+      - Completeness of the dictionary determines the successfulness of the segmentation
+  - Purely statistical approache
+    - Algorithm
+      - Given a string of characters, the pair of adjacent characters with the largest mutual information greater than a pre-determined threshold is grouped as a word
+      - \+ association measures
+      - \+ expectation maximization methods
+    - Advantages
+      - No need dictionary or training data
+      - Easily trained on any data source
+    - Problems
+      - Accuracy
+  - Statistical dictionary-based
+    - Algorithm 
+      - Represents dictionary as weighted finite-state transducer
+  - Supervised machine-learning
+    - Transformation-based error-driven
+      - Compares segmented & undersegmented corpus, finds the rule that achieves the maximum gain
+    - Advantages
+      - Learn the rules from a corpus
+      - Not labor-intensive
+    - Problems
+      - Not efficient compared with statistical approaches
+
 ###### [Character-Level Dependencies in Chinese: Usefulness and Learning](http://www.aclweb.org/anthology/E09-1100), EACL '09 Proceedings of the 12th Conference of the European Chapter of the Association for Computational Linguistics
 
 To show that character-level dependency can be a good alternative to word boundary representation for Chinese. Annotated internal dependencies even bring performance enhancement.
@@ -68,6 +99,32 @@ where T is a parse tree c
   - Annotated the internal structures of Chinese words; extend CTB-style constituent trees into character-level trees using their annotations
   - Developed a character-based parsing model that can produce character-level constituent trees; jointly performs word segmentation, POS tagging & syntactic parsing
   - Improved parsing accuracies compared to pipelined baseline
+
+###### [Max-Margin Tensor Neural Network for Chinese Word Segmentation](http://www.aclweb.org/anthology/P14-1028), Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics 2014
+
+- Intro
+  - Previous work
+    - Sequence labeling problem
+      - Each character assigned a tag indicating its position in the word
+      - Can incorporate a large body of handcrafted features into the models
+      - Number of features too large -> models too large for practical use & prone to overfit on training corpus
+  - Neural network models
+    - Able to minimize the effort in feature engineering
+    - Tag-tag, tag-character & character-character interaction not well modeled
+    - Features based on linguistic intuition & statistical information can hardly be fully captured relying only on the simple transition score & the single non-linear transformation
+- Model
+  - Max-Margin Tensor Neural Network `MMTNN`
+    - Explicitly models the interactions between tags & context characters by exploiting tag embeddings and tensor-based transformation
+    - Tensor factorization
+      - Improve efficiency
+      - Prevent overfitting
+  - Simple character bigram features
+    - How far we can go without using feature engineering?
+- Evaluation
+  - Chinese word segmentation
+    - [PKU (second International Chinese Word Segmentation)]() & [MSRA (second International Chinese Word Segmentation)]()
+      - Outperform
+      - Achieve competitive performance with minimal feature engineering
 
 ### Character-based Word Embedding
 
