@@ -47,6 +47,10 @@
       - Not labor-intensive
     - Problems
       - Not efficient compared with statistical approaches
+      
+###### [HHMM-based Chinese lexical analyzer ICTCLAS](http://delivery.acm.org/10.1145/1120000/1119280/p184-zhang.pdf?ip=147.8.114.68&id=1119280&acc=OPEN&key=CDD1E79C27AC4E65%2EDE0A32330AE3471B%2E4D4702B0C3E38B35%2E6D218144511F3437&CFID=988281468&CFTOKEN=17668654&__acm__=1506508860_3634cbf323c612589ba39728adc9bfc5), SIGHAN '03 Proceedings of the second SIGHAN workshop on Chinese language processing
+
+###### [Chinese Segmentation and New Word Detection using Conditional Random Fields](https://people.cs.umass.edu/~mccallum/papers/coling04.pdf), COLING '04 Proceedings of the 20th international conference on Computational Linguistics
 
 ###### [Character-Level Dependencies in Chinese: Usefulness and Learning](http://www.aclweb.org/anthology/E09-1100), EACL '09 Proceedings of the 12th Conference of the European Chapter of the Association for Computational Linguistics
 
