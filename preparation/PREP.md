@@ -26,7 +26,7 @@
     - Problems
       - Out-of-vocabulary words not dealt with
       - Completeness of the dictionary determines the successfulness of the segmentation
-  - Purely statistical approache
+  - Purely statistical approach
     - Algorithm
       - Given a string of characters, the pair of adjacent characters with the largest mutual information greater than a pre-determined threshold is grouped as a word
       - \+ association measures
