@@ -52,7 +52,7 @@
 
 ###### [Chinese Segmentation and New Word Detection using Conditional Random Fields](https://people.cs.umass.edu/~mccallum/papers/coling04.pdf), COLING '04 Proceedings of the 20th international conference on Computational Linguistics
 
-- Treat Chinese word segmentation as binary decision task (labeled beginning of a word or the continuation of one)
+Treat Chinese word segmentation as binary decision task (labeled beginning of a word or the continuation of one)
 
 ###### [Character-Level Dependencies in Chinese: Usefulness and Learning](http://www.aclweb.org/anthology/E09-1100), EACL '09 Proceedings of the 12th Conference of the European Chapter of the Association for Computational Linguistics
 
