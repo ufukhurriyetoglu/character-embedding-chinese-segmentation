@@ -52,6 +52,8 @@
 
 ###### [Chinese Segmentation and New Word Detection using Conditional Random Fields](https://people.cs.umass.edu/~mccallum/papers/coling04.pdf), COLING '04 Proceedings of the 20th international conference on Computational Linguistics
 
+- Treat Chinese word segmentation as binary decision task (labeled beginning of a word or the continuation of one)
+
 ###### [Character-Level Dependencies in Chinese: Usefulness and Learning](http://www.aclweb.org/anthology/E09-1100), EACL '09 Proceedings of the 12th Conference of the European Chapter of the Association for Computational Linguistics
 
 To show that character-level dependency can be a good alternative to word boundary representation for Chinese. Annotated internal dependencies even bring performance enhancement.
@@ -300,6 +302,7 @@ Training word embeddings considering __word co-occurrence statistics__ over all 
 - Continuous Space Language Models (CSLM) - umbrella term for the LMs that represent words with real-valued vectors
 - [Log Bi-linear Model (LBM)](http://blog.leanote.com/post/nanjiang/Log-biliearn-model)
 - [Autoencoder](https://www.doc.ic.ac.uk/~js4416/163/website/nlp/)
+- [Conditional random field (CRF)](http://www.aclweb.org/anthology/I05-3027) - a statistical sequence modeling framework
 
 ## Other Links
 
