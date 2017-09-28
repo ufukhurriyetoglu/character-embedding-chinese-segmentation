@@ -129,6 +129,10 @@ where T is a parse tree c
     - [PKU (second International Chinese Word Segmentation)]() & [MSRA (second International Chinese Word Segmentation)]()
       - Outperform
       - Achieve competitive performance with minimal feature engineering
+      
+###### [Segmentation-Free Word Embedding for Unsegmented Languages](http://aclweb.org/anthology/D17-1081), EMNLP 2017
+
+Training word embeddings considering __word co-occurrence statistics__ over all possible candidates of segmentations based on __frequent character n-grams__ instead of segmented sentences provided by conventional word segmenters.
 
 ### Character-based Word Embedding
 
