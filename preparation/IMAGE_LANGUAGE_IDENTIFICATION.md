@@ -1,4 +1,4 @@
-#### Related Work
+#### General Approaches
 
 - Connected component analysis (statistical analysis)
   - Upward concavity
@@ -30,11 +30,22 @@
     - Require precise baseline alignment and word segmentation
     - Employ a combination of hand-picked and trainable features and a variety of decision rules -> hard to extend to new languages
 
+#### General Limitations
+
+1. Language support
+  - Mostly 7~9 languages supported, the more the worse accuracy
+  - Many target on Arabic scripts
+2. Dataset
+  - Mostly private
+3. Scope
+  - Electronic documents > document images
+  - Printed > handwriting/mixed
+
 #### Scope
 
 - Source
-  - Digital text
-  - __Image text__
+  - Electronic documents (solved problem)
+  - __Document images__
 - Writing type
   - __Printed words__
   - Handwritten words
@@ -80,8 +91,63 @@ A computational framework for language identification using low-level, segmentat
     - Utilize image descriptors built from a codebook of generic shape features that are translation, scale, and rotation invariant
     - Formulate feature partitioning as a graph cuts problem
     - Multi-class SVM classifier
+- Model
+  - Construct a shape codebook by clustering shape codewords based on k-Adjacent Segments (kAS)
+  - Characterize the image of document by the occurrences of codewords of the shape codebook in the image
+  - Use a multi-class SVM to detect the script
 
 ###### [Language identification in document images](http://pagesperso.litislab.fr/cchatelain/wp-content/uploads/sites/8/2016/01/Bar15.pdf), Journal of Imaging Science and Technology 2016
+
+- Introduction
+  - Electronic document solved
+    - Google plug-in precision > 99% for 53 languages using n-gram of characters and language profiles
+  - Document image still a challenge
+    - A few dedicated on machine-printed documents, all pretty old
+    - Even fewer dedicated on handwritten documents, also pretty old
+  - Three tasks
+    - Writing type identification
+      - Zone/word level
+        - Physical descriptors of the regions (size, density, ...)
+        - Connected components (area, size, variance, ...)
+        - Regularity of the printed writing (upper/lower horizontal profiles, regularity of the projection profile, ...)
+        - Shape based features (codebooks of Triple Adjacent Segments (TAS))
+        - Spatial features (layout of characters in the block)
+      - Character level
+        - Regularity of the writing (straightness, symmetry, fluctuations, ...)
+    - Script identification
+      - Document level
+        - Shape analysis
+          - Bounding boxes distributions
+          - Average pixels distributions
+        - Profile analysis  
+          - Connected components
+          - Images of lines and words
+        - Texture analysis
+          - Images filtered with gabor filters & steerable gabor filters; the mean & standard deviation are extracted to feed a classifier (MLP/KNN)
+    - Language identification
+      - Electronic documents
+        - Language models
+        - Statistical analysis of characters
+        - Detection of keywords/short words or n-grams of characters
+      - Document images
+        - Printed documents
+          - Shape coding approach
+            - Character shape codes gathering family of characters
+            - Character extremum points & the number of horizontal word runs
+          - Similarity between language templates & document vector
+          - Language model
+            - Computing word unigram relative entropy
+        - Handwritten documents
+          - Shape analysis of the connected components
+            - The means, standard deviation, skew of 5 connected components properties (aspect ratio, compactness, number of holes, centroid positions)
+- Model
+  - Writing type identification (handwritten/printed)
+  - Script identification (Lating/Arabic)
+- Dataset
+  - [MAURDOR]()
+    - Heterogeneous documents (forms, printed and manually annotated business documents, handwritten correspondence, maps, ID, newspapers articles, blue-prints, etc.)
+    - Mixed printed and handwritten texts
+    - In various languages (French, English and Arabic)
 
 #### Links
 
