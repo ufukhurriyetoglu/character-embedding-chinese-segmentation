@@ -32,12 +32,12 @@
 
 #### General Limitations
 
-1. Language support
-  - Mostly 7~9 languages supported, the more the worse accuracy
+- Language support
+  - Mostly < 10 languages supported, the more the worse accuracy
   - Many target on Arabic scripts
-2. Dataset
+- Dataset
   - Mostly private
-3. Scope
+- Scope
   - Electronic documents > document images
   - Printed > handwriting/mixed
 
