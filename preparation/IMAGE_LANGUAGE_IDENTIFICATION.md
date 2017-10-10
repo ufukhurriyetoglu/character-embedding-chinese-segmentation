@@ -38,12 +38,17 @@
 - Dataset
   - Mostly private
 - Scope
-  - Electronic documents > document images
-  - Printed > handwriting/mixed
+  - Samples
+    - Electronic documents > document images
+    - Printed > handwriting/mixed
+  - Length of text
+    - Mostly on well-constructed, sufficiently long enough documents -> higher accuracy
+- Others
+  - Mostly feature engineering works, incorporate hand-engineered features or large amounts of prior knowledge
 
 #### Scope
 
-- Source
+- Samples
   - Electronic documents (solved problem)
   - __Document images__
 - Writing type
@@ -152,6 +157,7 @@ A computational framework for language identification using low-level, segmentat
 #### Links
 
 - [language-detection library (Java)](https://code.google.com/archive/p/language-detection/)
+- [END-TO-END TEXT RECOGNITION WITH CONVOLUTIONAL NEURAL NETWORKS](https://crypto.stanford.edu/~dwu4/papers/HonorThesis.pdf)
 
 #### Glossary
 
