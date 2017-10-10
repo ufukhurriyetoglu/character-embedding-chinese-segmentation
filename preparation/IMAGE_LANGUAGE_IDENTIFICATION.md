@@ -154,6 +154,35 @@ A computational framework for language identification using low-level, segmentat
     - Mixed printed and handwritten texts
     - In various languages (French, English and Arabic)
 
+###### [Visual Script and Language Identification](https://arxiv.org/pdf/1601.01885.pdf), 2016
+
+Script identification on word level granularity on scene-text, based on hand-crafted texture features & ANN.
+
+- Introduction
+  - CNN needs vast computational resources & large amounts of annotated data
+- Background
+  - Script identification
+    - Focus on detecting symbols
+    - Can be seen as many problems depending on:
+      - Granularity of samples i.e. character based, word based, text-line based, paragraph based
+      - Modality of text i.e. scene-text, printed documents, handwritten texts
+  - Language identification 
+    - Detect some specific auxiliary symbols, e.g. diacritics, and an underlying language model
+- Method
+  - Preproces
+  - Local Binary Pattern feature extraction
+    - Bi-level nature exploited
+    - Fast to compute
+    - Pooled over regions which makes them segmentation-free and an inherently global descriptor of an image region
+  - Features trained on ANN
+    - Multi Layer Perceptron
+      - Require datasets of substantial size
+      - Require all classes represented in a balancedway
+  - Intermediary layers in ANN used as generative model to perform classification
+    - Metric Learning
+      - Require intermediary dimensionality reduction technique to solve for quadratic/cubical complexities with respect to feature dimensionality
+      - Worse result
+
 #### Links
 
 - [language-detection library (Java)](https://code.google.com/archive/p/language-detection/)
@@ -166,3 +195,8 @@ A computational framework for language identification using low-level, segmentat
 - [Document Image Processing (DIP)]()
 - [Gabor filters]()
 - [Grey level co-occurrence matrices]()
+- [Local Binary Patterns (LBP)](https://en.wikipedia.org/wiki/Local_binary_patterns)
+  - A type of visual descriptor used for classification in computer vision
+  - Found to be a powerful feature for texture classification
+- [Metric Learning](https://en.wikipedia.org/wiki/Similarity_learning#Metric_learning)
+  - The task of learning a distance function over objects
