@@ -183,6 +183,21 @@ Script identification on word level granularity on scene-text, based on hand-cra
       - Require intermediary dimensionality reduction technique to solve for quadratic/cubical complexities with respect to feature dimensionality
       - Worse result
 
+###### [Language Identification of Character Images Using Machine Learning Techniques](https://www.iis.sinica.edu.tw/papers/fchang/1764-F.pdf), 2016
+
+Solving the language identification problem for individual character images using 2 effective multi-class classification methods. Use the same methods & features used for character recognition, except that the class types are languages but not character categories.
+
+- Background
+  - Category of methods
+    - Identifies coarse textual entities (textlines, text blocks, complete documents, etc.)
+      - Appropriate for European languages, which have many characters in common
+    - Identifies language type of homogeneous coarse entities (without first recognizing the characters)
+    - Identifies language type of individual characters (without analyzing the coarse entities)
+      - Doesn't assume homogeneity of textual entities -> useful for dealing with documents with no clues in the layout that can be used to determine language boundaries
+- Methods
+  - SVM
+  - Prototype classification method
+
 #### Links
 
 - [language-detection library (Java)](https://code.google.com/archive/p/language-detection/)
