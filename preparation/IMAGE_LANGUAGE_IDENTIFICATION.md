@@ -169,7 +169,7 @@ Script identification on word level granularity on scene-text, based on hand-cra
   - Language identification 
     - Detect some specific auxiliary symbols, e.g. diacritics, and an underlying language model
 - Method
-  - Preproces
+  - Preprocess
   - Local Binary Pattern feature extraction
     - Bi-level nature exploited
     - Fast to compute
