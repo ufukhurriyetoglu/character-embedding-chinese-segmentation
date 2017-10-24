@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
-from gensim.models.keyedvectors import KeyedVectors
+import word2vec
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -14,12 +14,13 @@ def parse_args():
 
     return parser.parse_args()
 
-def minmax(vectors, padding=0.02):
+def minmax(vectors, padding_scale=0.1):
     dim = np.shape(vectors)[-1]
     reshaped_vectors = np.reshape(vectors, (-1, dim))
 
-    axis_min = np.amin(reshaped_vectors, axis=0) - padding
-    axis_max = np.amax(reshaped_vectors, axis=0) + padding
+    peak_to_peak = np.ptp(reshaped_vectors, axis=0)
+    axis_min = np.amin(reshaped_vectors, axis=0) - padding_scale * peak_to_peak[0]
+    axis_max = np.amax(reshaped_vectors, axis=0) + padding_scale * peak_to_peak[1]
     axis_minmax = [None] * (len(axis_min) + len(axis_max))
     axis_minmax[::2] = axis_min
     axis_minmax[1::2] = axis_max
@@ -41,17 +42,7 @@ def pca(vectors):
     return np.reshape(reduced_vectors, new_shape)
 
 def pca_model(model):
-    items = model.vocab
-    keys = [item[0] for item in items] 
-    vectors = [model[c] for c in keys] 
-
-    reduced_vectors = pca(vectors)
-
-    reduced_model = {}
-    for i, c in enumerate(keys):
-        reduced_model[c] = reduced_vectors[i]
-
-    return reduced_model
+    return pca(model.vectors)
 
 def visualize(displays, vectors):
     # init plot
@@ -75,7 +66,7 @@ def visualize(displays, vectors):
     # show plot
     plt.show()
 
-def interactive_test(model, reduced_model):
+def interactive_test(model, reduced_vectors):
     # Keep vectors for visualization
     all_chars = []
     all_vectors = []
@@ -86,18 +77,23 @@ def interactive_test(model, reduced_model):
             break
         else:
             try:
-                sim_chars = model.similar_by_word(c)
+                sim_char_idxs, metrics = model.cosine(c)
+                char_idx = np.where(model.vocab == c)[0][0]
 
                 chars = [c]
-                vectors = [reduced_model[c]]
-                for sim_char, score in sim_chars:
+                vectors = [reduced_vectors[char_idx]]
+                for i, sim_char_idx in enumerate(sim_char_idxs):
+                    sim_char = model.vocab[sim_char_idx]
+                    metric = metrics[i]
+                    reduced_vector = reduced_vectors[sim_char_idx]
+
                     # skip p special character
                     if sim_char == 'p':
                         continue
 
                     chars.append(sim_char)
-                    vectors.append(reduced_model[sim_char])
-                    print('{}:\t{}\t{}'.format(sim_char, score, reduced_model[sim_char]))
+                    vectors.append(reduced_vector)
+                    print('{}:\t{}\t{}'.format(sim_char, metric, reduced_vector))
 
                 all_chars.append(chars)
                 all_vectors.append(vectors)
@@ -110,10 +106,10 @@ def interactive_test(model, reduced_model):
 def main():
     args = parse_args()
 
-    model = KeyedVectors.load(args.model)
-    reduced_model = pca_model(model)
+    model = word2vec.load(args.model) 
+    reduced_vectors = pca_model(model)
 
-    interactive_test(model, reduced_model)
+    interactive_test(model, reduced_vectors)
 
 
 if __name__ == "__main__":
