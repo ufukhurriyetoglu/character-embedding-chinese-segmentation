@@ -51,6 +51,7 @@ coverage.xml
 
 # Others
 .DS_Store
+.venv
 
 # Project
 papers/
