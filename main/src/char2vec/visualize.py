@@ -60,6 +60,8 @@ def visualize(displays, vectors):
     ax.set_title('Char2Vec')
     ax.axis(minmax(vectors))
 
+    print('-----------------------------------------------------------------------')
+
     # plot char2vec
     for i, group in enumerate(vectors):
         color = 'C{}'.format(i % 10)
@@ -67,6 +69,8 @@ def visualize(displays, vectors):
         for j, v in enumerate(group): 
             ax.text(v[0], v[1], displays[i][j], fontproperties=zhfont, color=color)
             print('{}: {}'.format(displays[i][j], v))
+
+    print('-----------------------------------------------------------------------')
 
     # show plot
     plt.show()
@@ -93,7 +97,7 @@ def interactive_test(model, reduced_model):
 
                     chars.append(sim_char)
                     vectors.append(reduced_model[sim_char])
-                    print('{}:\t{}'.format(sim_char, score))
+                    print('{}:\t{}\t{}'.format(sim_char, score, reduced_model[sim_char]))
 
                 all_chars.append(chars)
                 all_vectors.append(vectors)
