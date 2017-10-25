@@ -5,7 +5,7 @@ import word2vec
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Clean Chinese corpus')
+    parser = argparse.ArgumentParser(description='Train char2vec')
     parser.add_argument('corpus', metavar='C', type=str, 
                     help='corpus file (line sentences)')
     parser.add_argument('--output', '-o', metavar='O', type=str, default='char2vec.bin',
