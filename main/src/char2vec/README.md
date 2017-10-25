@@ -5,9 +5,9 @@
     $ python3 char2vec.py <corpus-file> -o <output-model-name> [--vectordim <vector-dimension>]
     ```
 
-- `visualize.py`: char2vec visualization
+- `visualize_vec.py`: char2vec visualization
     ```bash
-    $ python3 visualize.py <model-name>
+    $ python3 visualize_vec.py <model-name>
 
     # interactive interface
     >>> Input a Chinese character (q to quit):
