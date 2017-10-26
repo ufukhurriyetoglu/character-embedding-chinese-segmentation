@@ -5,6 +5,22 @@
     $ python3 char2vec.py <corpus-file> -o <output-model-name> [--vectordim <vector-dimension>]
     ```
 
+- `char2clusters.py`: clustering char vectors
+    ```bash
+    $ python3 char2clusters.py <corpus-file> -k <num-of-clusters> --all >> <output-file-name>
+
+    # or interactive interface
+
+    $ python3 char2clusters.py <corpus-file> -k <num-of-clusters>
+
+    >>> Input a Chinese character (q to quit):
+    工
+
+    >>>
+    學,論,研,和,大,上,實,其,現,構,領,亦,念,幾,使,許,種,析,自,詞,今,文,書,成,得,德,確,與,加,開,源,斯,系,美,臘,重,曼,通,全,抽,天,致,向,程,工,
+    >>>
+    ```
+
 - `visualize_vec.py`: char2vec visualization
     ```bash
     $ python3 visualize_vec.py <model-name>
