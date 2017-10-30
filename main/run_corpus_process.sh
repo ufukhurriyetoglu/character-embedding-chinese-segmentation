@@ -18,7 +18,7 @@ echo 'Cleaning corpus...'
 python3 -m src.corpus_process.clean_corpus corpus/${pre}wiki_texts.txt > corpus/${pre}clean_wiki_texts.txt
 
 echo 'Converting to traditional Chinese...'
-opencc -i corpus/clean_wiki_texts.txt -o corpus/${pre}corpus.txt -c src/corpus_process/s2t.conf
+opencc -i corpus/${pre}clean_wiki_texts.txt -o corpus/${pre}corpus.txt -c src/corpus_process/s2t.conf
 
 echo 'Segmenting characters...'
 python3 -m src.corpus_process.seg_corpus corpus/${pre}corpus.txt -o corpus/${pre}corpus_seg.txt
