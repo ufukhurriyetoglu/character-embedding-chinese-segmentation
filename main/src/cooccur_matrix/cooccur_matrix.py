@@ -1,3 +1,4 @@
+import logging
 import argparse
 import pickle
 import word2vec
@@ -36,7 +37,7 @@ def get_cooccur_matrix(model, clusters, corpus_filename, n=2):
     with open(corpus_filename, 'r') as fin:
         for l_no, line in enumerate(fin):
             if l_no % 1000 == 0:
-                print('Processing line {}...'.format(l_no))
+                logging.info('Processing line {}...'.format(l_no))
 
             # slide window over each line
             for w_no in range(len(line) - n):
@@ -65,6 +66,7 @@ def get_cooccur_matrix(model, clusters, corpus_filename, n=2):
     return cooccur_matrix
 
 def main():
+    logging.basicConfig(level=logging.INFO)
     args = parse_args()
 
     model = word2vec.load(args.model)
