@@ -24,7 +24,7 @@
     $ python3 char2vec.py <corpus-file> -o <output-model-name> [--vectordim <vector-dimension>]
     ```
 
-- `visualize_vec.py`: char2vec visualization
+- `visualize.py`: char2vec visualization
     ```bash
     $ python3 visualize_vec.py <model-name>
 
@@ -81,3 +81,12 @@
     ```bash
     $ python3 cooccur_matrix.py --model <model-file> --clusters <cluster-file> --corpus <corpus-file> -o <output-file-name> 
     ``` 
+
+- `visualize.py`: connection strength visualization
+    ```bash
+    $ python3 visualize.py --model <model-name> --clusters <cluster-f-name> --comatrix <cooccur-matrix-f-name>
+
+    # interactive interface
+    >>> Input a Chinese sentence (q to quit):
+    今天天氣真好
+    ```
