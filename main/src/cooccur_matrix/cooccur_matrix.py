@@ -23,11 +23,11 @@ def save_matrix(cooccur_matrix, output):
     with open(output, 'wb') as fout:
         pickle.dump(cooccur_matrix, fout)
 
-def load_clusters(cluster_f):
-    with open(cluster_f, 'rb') as fin:
-        clusters = pickle.load(fin)
+def load_pickle(f):
+    with open(f, 'rb') as fin:
+        data = pickle.load(fin)
 
-    return clusters
+    return data 
 
 def get_cooccur_matrix(model, clusters, corpus_filename, n=2):
     # init matrix - (n-1)_distances x num_of_clusters x num_of_clusters
@@ -70,7 +70,7 @@ def main():
     args = parse_args()
 
     model = word2vec.load(args.model)
-    clusters = load_clusters(args.clusters) 
+    clusters = load_pickle(args.clusters) 
 
     cooccur_matrix = get_cooccur_matrix(model, clusters, args.corpus, n=args.n)
     
