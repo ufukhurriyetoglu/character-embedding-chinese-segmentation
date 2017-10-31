@@ -11,6 +11,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Clean Chinese corpus')
     parser.add_argument('model', metavar='M', type=str,
                         help='model file')
+    parser.add_argument('-n', metavar='N', type=int, default=5,
+                        help='number of closest vectors to display')
 
     return parser.parse_args()
 
@@ -66,7 +68,7 @@ def visualize(displays, vectors):
     # show plot
     plt.show()
 
-def interactive_test(model, reduced_vectors):
+def interactive_test(model, reduced_vectors, n=5):
     # Keep vectors for visualization
     all_chars = []
     all_vectors = []
@@ -81,18 +83,23 @@ def interactive_test(model, reduced_vectors):
                 char_idx = np.where(model.vocab == c)[0][0]
 
                 chars = [c]
-                vectors = [reduced_vectors[char_idx]]
-                for i, sim_char_idx in enumerate(sim_char_idxs):
+                vectors = [list(reduced_vectors[char_idx])]
+                i = 0
+                while i < n:
+                    sim_char_idx = sim_char_idxs[i]
                     sim_char = model.vocab[sim_char_idx]
                     metric = metrics[i]
                     reduced_vector = reduced_vectors[sim_char_idx]
 
+                    i += 1
+
                     # skip p special character
                     if sim_char == 'p':
+                        n += 1
                         continue
 
                     chars.append(sim_char)
-                    vectors.append(reduced_vector)
+                    vectors.append(list(reduced_vector))
                     print('{}:\t{}\t{}'.format(sim_char, metric, reduced_vector))
 
                 all_chars.append(chars)
@@ -109,7 +116,7 @@ def main():
     model = word2vec.load(args.model) 
     reduced_vectors = pca_model(model)
 
-    interactive_test(model, reduced_vectors)
+    interactive_test(model, reduced_vectors, n=args.n)
 
 
 if __name__ == "__main__":
