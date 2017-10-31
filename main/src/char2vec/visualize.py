@@ -8,7 +8,7 @@ from sklearn.decomposition import PCA
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Clean Chinese corpus')
+    parser = argparse.ArgumentParser(description='Visualize char2vec')
     parser.add_argument('model', metavar='M', type=str,
                         help='model file')
     parser.add_argument('-n', metavar='N', type=int, default=5,
