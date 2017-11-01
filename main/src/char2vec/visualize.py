@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
-import word2vec
+from gensim.models import Word2Vec
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -49,7 +49,7 @@ def pca(vectors):
     return np.reshape(reduced_vectors, new_shape)
 
 def pca_model(model):
-    return pca(model.vectors)
+    return pca(model.wv.syn0)
 
 def visualize(displays, vectors):
     # init plot
@@ -84,14 +84,14 @@ def interactive_test(model, reduced_vectors, n=5):
             break
         else:
             try:
-                sim_char_idxs, metrics = model.cosine(c)
-                char_idx = np.where(model.vocab == c)[0][0]
+                sim_chars, metrics = zip(*model.wv.similar_by_word(c))
+                char_idx = model.wv.index2word.index(c) 
 
                 chars = [c]
                 vectors = [list(reduced_vectors[char_idx])]
                 for i in range(n): 
-                    sim_char_idx = sim_char_idxs[i]
-                    sim_char = model.vocab[sim_char_idx]
+                    sim_char = sim_chars[i] 
+                    sim_char_idx = model.wv.index2word.index(sim_char)
                     metric = metrics[i]
                     reduced_vector = reduced_vectors[sim_char_idx]
 
@@ -110,7 +110,7 @@ def interactive_test(model, reduced_vectors, n=5):
 def main():
     args = parse_args()
 
-    model = word2vec.load(args.model) 
+    model = Word2Vec.load(args.model) 
     reduced_vectors = pca_model(model)
 
     interactive_test(model, reduced_vectors, n=args.n)

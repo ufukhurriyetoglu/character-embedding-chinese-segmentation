@@ -1,7 +1,7 @@
 import logging
 import argparse
 import pickle
-import word2vec
+from gensim.models import Word2Vec
 
 
 def parse_args():
@@ -48,7 +48,7 @@ def get_cooccur_matrix(model, clusters, corpus_filename, n=2):
                 # get cluster info in each window
                 for char in window:
                     try:
-                        char_idx = model.ix(char)
+                        char_idx = model.wv.index2word.index(char)
 
                         char_idxs.append(char_idx)
                         cluster_idxs.append(clusters[char_idx])
@@ -69,7 +69,7 @@ def main():
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
     args = parse_args()
 
-    model = word2vec.load(args.model)
+    model = Word2Vec.load(args.model)
     clusters = load_pickle(args.clusters) 
 
     cooccur_matrix = get_cooccur_matrix(model, clusters, args.corpus, n=args.n)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 import pickle
-import word2vec
+from gensim.models import Word2Vec
 import numpy as np
 from sklearn import cluster
 
@@ -42,7 +42,7 @@ def interactive_test(model, cluster_idxs):
                 print('Error: {}'.format(e))
 
 def get_clusters(model, k=50):
-    vectors = model.vectors
+    vectors = model.wv.syn0
     kmeans = cluster.KMeans(n_clusters=k, n_jobs=-1, random_state=0)
     cluster_idxs = kmeans.fit_predict(vectors)
 
@@ -51,8 +51,8 @@ def get_clusters(model, k=50):
 def main():
     args = parse_args()
 
-    model = word2vec.load(args.model) 
-    vectors = model.vectors
+    model = Word2Vec.load(args.model) 
+    vectors = model.wv.syn0
     kmeans = cluster.KMeans(n_clusters=args.k, n_jobs=-1, random_state=0)
     cluster_idxs = kmeans.fit_predict(vectors)
 

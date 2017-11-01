@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import argparse
-import word2vec
+from gensim.models import word2vec
 
 
 def parse_args():
@@ -15,11 +15,14 @@ def parse_args():
 
     return parser.parse_args()
 
-def char2vec(corpus, output='char2vec.bin', dim=250):
+def char2vec(corpus, output='char2vec.bin', dim=250, window=5, min_count=1):
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
     logging.info('Output char2vec of dimension {} to {}...'.format(dim, output))
 
-    word2vec.word2vec(corpus, output, size=dim)
+    sentences = word2vec.LineSentence(corpus)
+    model = word2vec.Word2Vec(sentences, size=dim, window=window, min_count=min_count)
+
+    model.save(output)
 
 def main():
     args = parse_args()
