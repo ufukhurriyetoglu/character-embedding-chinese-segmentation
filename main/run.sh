@@ -41,10 +41,14 @@ if [ $preprocess -eq 1 ]; then
     echo "[$TIME] Duration for preprocessing: $(((end_0 - start) / 60)) min"
 fi
 
+if [ ! -d src/output/d_${vd}_k_${k} ]; then
+    mkdir src/output/d_${vd}_k_${k}
+fi
+
 # Char2vec
 
 echo "[$MAIN] Char2vec training..."
-./run_char2vec.sh $test -d $vd
+./run_char2vec.sh $test -d $vd -k $k
 
 end_1=`date +%s`
 echo "[$TIME] Duration for char2vec: $(((end_1 - end_0) / 60)) min"
@@ -53,14 +57,14 @@ echo "[$TIME] Duration for char2vec: $(((end_1 - end_0) / 60)) min"
 
 echo "[$MAIN] Char2clusters training..."
 end_2=`date +%s`
-./run_char2clusters.sh $test -k $k
+./run_char2clusters.sh $test -d $vd -k $k
 
 echo "[$TIME] Duration for char2clusters: $(((end_2 - end_1) / 60)) min"
 
 # Cooccurrence matrix
 
 echo "[$MAIN] Cooccurrence matrix calculating..."
-./run_cooccur_matrix.sh $test
+./run_cooccur_matrix.sh $test -d $vd -k $k
 
 end_3=`date +%s`
 echo "[$TIME] Duration for cooccurrence matrix: $(((end_3 - end_2) / 60)) min"

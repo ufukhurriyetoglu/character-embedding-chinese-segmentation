@@ -2,12 +2,15 @@
 
 pre=""
 k=50
+vd=250
 
 INFO="INFO"
 
-while getopts "tk:" opt; do
+while getopts "td:k:" opt; do
     case "$opt" in
         t)  pre="small_"
+            ;;
+        d)  vd=${OPTARG}
             ;;
         k)  k=${OPTARG}
             ;;
@@ -16,4 +19,4 @@ done
 
 echo -e "\t[$INFO] Number of clusters: $k"
 
-python3 -m src.clustering.char2clusters src/output/${pre}char2vec.bin -k ${k} -o src/output/${pre}char2clusters.bin
+python3 -m src.clustering.char2clusters src/output/d_${vd}_k_${k}/${pre}char2vec.bin -k ${k} -o src/output/d_${vd}_k_${k}/${pre}char2clusters.bin
