@@ -21,11 +21,16 @@ def minmax(vectors, padding_scale=0.1):
     reshaped_vectors = np.reshape(vectors, (-1, dim))
 
     peak_to_peak = np.ptp(reshaped_vectors, axis=0)
-    axis_min = np.amin(reshaped_vectors, axis=0) - padding_scale * peak_to_peak[0]
-    axis_max = np.amax(reshaped_vectors, axis=0) + padding_scale * peak_to_peak[1]
+    axis_min = np.amin(reshaped_vectors, axis=0)
+    axis_max = np.amax(reshaped_vectors, axis=0)
     axis_minmax = [None] * (len(axis_min) + len(axis_max))
     axis_minmax[::2] = axis_min
     axis_minmax[1::2] = axis_max
+
+    axis_minmax[0] -= padding_scale * peak_to_peak[0]
+    axis_minmax[1] += padding_scale * peak_to_peak[0]
+    axis_minmax[2] -= padding_scale * peak_to_peak[1]
+    axis_minmax[3] += padding_scale * peak_to_peak[1]
 
     return axis_minmax
 
@@ -84,26 +89,18 @@ def interactive_test(model, reduced_vectors, n=5):
 
                 chars = [c]
                 vectors = [list(reduced_vectors[char_idx])]
-                i = 0
-                while i < n:
+                for i in range(n): 
                     sim_char_idx = sim_char_idxs[i]
                     sim_char = model.vocab[sim_char_idx]
                     metric = metrics[i]
                     reduced_vector = reduced_vectors[sim_char_idx]
-
-                    i += 1
-
-                    # skip p special character
-                    if sim_char == 'p':
-                        n += 1
-                        continue
 
                     chars.append(sim_char)
                     vectors.append(list(reduced_vector))
                     print('{}:\t{}\t{}'.format(sim_char, metric, reduced_vector))
 
                 all_chars.append(chars)
-                all_vectors.append(vectors)
+                all_vectors.append(list(vectors))
 
                 visualize(all_chars, all_vectors)
 
