@@ -5,6 +5,7 @@ import numpy as np
 import pickle
 import matplotlib
 import matplotlib.pyplot as plt
+import re
 
 
 def parse_args():
@@ -24,27 +25,33 @@ def load_pickle(f):
 
     return data 
 
-def visualize(chars, connection_strength, n=2):
+def visualize(chars, cluster_idxs, connection_strength, n=2):
     # init data
     m = len(chars) * 2 - 1
     x_labels = [''] * m
-    x_labels[::2] = chars
+    x_labels[::2] = ['{}\n({})'.format(char, cluster) for char, cluster in zip(chars, cluster_idxs)]
     x = range(m)
-    ys = [[0 for _ in range(m)] for _ in range(n-1)]
+    ys = [[None for _ in range(m)] for _ in range(n-1)]
     for step in range(1, n):
         for i in range(len(chars) - step):
-            for j in range(i + step, len(chars), step):
-                center = i + j 
-                ys[step-1][center] = connection_strength[i][j]
+            j = i + step
+            center = i + j 
+            ys[step-1][center] = connection_strength[i][j]
 
     # init plot
     zhfont = matplotlib.font_manager.FontProperties(fname='../../assets/fonts/wqy-microhei.ttc') # Chinese text display font
     plt.title('Connection Strength')
     plt.xticks(x, x_labels, fontproperties=zhfont) 
+    plt.margins(0.2)
 
     # plot strengths at different step sizes
     for i, y in enumerate(ys):
-        plt.plot(x, y, label='Step {}'.format(i+1))
+        # normalize first
+        y_mask = np.where(np.array(y) != None)
+        y_norm = np.array([None for _ in range(len(y))])
+        y_norm[y_mask] = np.array(y)[y_mask] / max(np.array(y)[y_mask])
+
+        plt.plot(x, y_norm, 'bs', label='Step {}'.format(i+1))
 
     # show plot
     plt.show()
@@ -56,7 +63,10 @@ def interactive_test(model, clusters, cooccur_matrix, n=2):
             break
         else:
             try:
-                chars = list(sen)
+                # replace non-words with p (assume no english words)
+                clean_sen = re.sub(r'([^\w]|\s)+', 'p', sen)
+
+                chars = list(clean_sen)
                 char_idxs = [-1 for _ in range(len(chars))]
                 cluster_idxs= [-1 for _ in range(len(chars))]
                 connection_strength = [[0 for _ in range(len(chars))] for _ in range(len(chars))]
@@ -75,7 +85,7 @@ def interactive_test(model, clusters, cooccur_matrix, n=2):
                             if cluster_idxs[i] != -1 and cluster_idxs[j] != -1:
                                 connection_strength[i][j] = cooccur_matrix[step-1][cluster_idxs[i]][cluster_idxs[j]]
 
-                visualize(chars, connection_strength)
+                visualize(chars, cluster_idxs, connection_strength)
 
             except Exception as e:
                 print('Error: {}'.format(e))
