@@ -17,6 +17,7 @@ def parse_args():
 
 def char2vec(corpus, output='char2vec.bin', dim=250):
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+    logging.info('Output char2vec of dimension {} to {}...'.format(dim, output))
 
     word2vec.word2vec(corpus, output, size=dim)
 

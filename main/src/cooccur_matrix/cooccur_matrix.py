@@ -66,7 +66,7 @@ def get_cooccur_matrix(model, clusters, corpus_filename, n=2):
     return cooccur_matrix
 
 def main():
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
     args = parse_args()
 
     model = word2vec.load(args.model)
