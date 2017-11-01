@@ -90,3 +90,13 @@
     >>> Input a Chinese sentence (q to quit):
     今天天氣真好
     ```
+
+## Notes
+
+Interchanging between `gensim` and `word2vec`:
+
+|gensim|word2vec|
+|-|-|
+|`from gensim.models import Word2Vec`|`import word2vec`|
+|`model.wv.index2word.index(char)`|`model.ix(char)`|
+|`model.syn0`|`model.vectors`|

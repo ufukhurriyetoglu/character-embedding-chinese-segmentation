@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
-import word2vec
+from gensim.models import Word2Vec
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -21,11 +21,16 @@ def minmax(vectors, padding_scale=0.1):
     reshaped_vectors = np.reshape(vectors, (-1, dim))
 
     peak_to_peak = np.ptp(reshaped_vectors, axis=0)
-    axis_min = np.amin(reshaped_vectors, axis=0) - padding_scale * peak_to_peak[0]
-    axis_max = np.amax(reshaped_vectors, axis=0) + padding_scale * peak_to_peak[1]
+    axis_min = np.amin(reshaped_vectors, axis=0)
+    axis_max = np.amax(reshaped_vectors, axis=0)
     axis_minmax = [None] * (len(axis_min) + len(axis_max))
     axis_minmax[::2] = axis_min
     axis_minmax[1::2] = axis_max
+
+    axis_minmax[0] -= padding_scale * peak_to_peak[0]
+    axis_minmax[1] += padding_scale * peak_to_peak[0]
+    axis_minmax[2] -= padding_scale * peak_to_peak[1]
+    axis_minmax[3] += padding_scale * peak_to_peak[1]
 
     return axis_minmax
 
@@ -44,7 +49,7 @@ def pca(vectors):
     return np.reshape(reduced_vectors, new_shape)
 
 def pca_model(model):
-    return pca(model.vectors)
+    return pca(model.wv.syn0)
 
 def visualize(displays, vectors):
     # init plot
@@ -79,31 +84,23 @@ def interactive_test(model, reduced_vectors, n=5):
             break
         else:
             try:
-                sim_char_idxs, metrics = model.cosine(c)
-                char_idx = np.where(model.vocab == c)[0][0]
+                sim_chars, metrics = zip(*model.wv.similar_by_word(c))
+                char_idx = model.wv.index2word.index(c) 
 
                 chars = [c]
                 vectors = [list(reduced_vectors[char_idx])]
-                i = 0
-                while i < n:
-                    sim_char_idx = sim_char_idxs[i]
-                    sim_char = model.vocab[sim_char_idx]
+                for i in range(n): 
+                    sim_char = sim_chars[i] 
+                    sim_char_idx = model.wv.index2word.index(sim_char)
                     metric = metrics[i]
                     reduced_vector = reduced_vectors[sim_char_idx]
-
-                    i += 1
-
-                    # skip p special character
-                    if sim_char == 'p':
-                        n += 1
-                        continue
 
                     chars.append(sim_char)
                     vectors.append(list(reduced_vector))
                     print('{}:\t{}\t{}'.format(sim_char, metric, reduced_vector))
 
                 all_chars.append(chars)
-                all_vectors.append(vectors)
+                all_vectors.append(list(vectors))
 
                 visualize(all_chars, all_vectors)
 
@@ -113,7 +110,7 @@ def interactive_test(model, reduced_vectors, n=5):
 def main():
     args = parse_args()
 
-    model = word2vec.load(args.model) 
+    model = Word2Vec.load(args.model) 
     reduced_vectors = pca_model(model)
 
     interactive_test(model, reduced_vectors, n=args.n)
