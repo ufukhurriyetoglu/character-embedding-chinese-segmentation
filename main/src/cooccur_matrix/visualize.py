@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
-import word2vec
+from gensim.models import Word2Vec
 import numpy as np
 import pickle
 import matplotlib
@@ -49,7 +49,9 @@ def visualize(chars, cluster_idxs, connection_strength, n=2):
         # normalize first
         y_mask = np.where(np.array(y) != None)
         y_norm = np.array([None for _ in range(len(y))])
-        y_norm[y_mask] = np.array(y)[y_mask] / max(np.array(y)[y_mask])
+        max_y = max(np.array(y)[y_mask])
+        if max_y != 0: 
+            y_norm[y_mask] = np.array(y)[y_mask] / max_y
 
         plt.plot(x, y_norm, 'bs', label='Step {}'.format(i+1))
 
@@ -73,7 +75,7 @@ def interactive_test(model, clusters, cooccur_matrix, n=2):
 
                 for i, char in enumerate(chars):
                     try:
-                        char_idxs[i] = model.ix(char)
+                        char_idxs[i] = model.wv.index2word.index(char)
                         cluster_idxs[i] = clusters[char_idxs[i]]
 
                     except Exception as e:
@@ -93,7 +95,7 @@ def interactive_test(model, clusters, cooccur_matrix, n=2):
 def main():
     args = parse_args()
 
-    model = word2vec.load(args.model) 
+    model = Word2Vec.load(args.model) 
     clusters = load_pickle(args.clusters) 
     cooccur_matrix = load_pickle(args.comatrix)
 
