@@ -60,12 +60,9 @@ def main():
     args = parse_args()
 
     model = Word2Vec.load(args.model) 
-    print(args.output)
 
     if not args.clusters:
-        vectors = model.wv.syn0
-        kmeans = cluster.KMeans(n_clusters=args.k, n_jobs=-1, random_state=0)
-        cluster_idxs = kmeans.fit_predict(vectors)
+        cluster_idxs = get_clusters(model, k=args.k)
 
         save_clusters(cluster_idxs, args.output)
     else:
