@@ -1,12 +1,13 @@
 #!/bin/bash
 
 pre=""
+algo="k_means"
 k=50
 vd=250
 
 INFO="INFO"
 
-while getopts "td:k:" opt; do
+while getopts "td:k:a:" opt; do
     case "$opt" in
         t)  pre="small_"
             ;;
@@ -14,9 +15,11 @@ while getopts "td:k:" opt; do
             ;;
         k)  k=${OPTARG}
             ;;
+        a)  algo=${OPTARG}
+            ;;
     esac
 done
 
-echo -e "\t[$INFO] Number of clusters: $k"
+echo -e "\t[$INFO] Number of clusters: $k, clustering method: $algo"
 
-python3 -m src.clustering.char2clusters src/output/d_${vd}_k_${k}/${pre}char2vec.bin -k ${k} -o src/output/d_${vd}_k_${k}/${pre}char2clusters.bin
+python3 -m src.clustering.char2clusters_${algo} src/output/d_${vd}_k_${k}_${algo}/${pre}char2vec.bin -k ${k} -o src/output/d_${vd}_k_${k}_${algo}/${pre}char2clusters.bin
