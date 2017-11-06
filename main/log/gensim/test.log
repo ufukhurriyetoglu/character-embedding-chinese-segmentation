@@ -1,0 +1,9 @@
+[MAIN] Char2vec training...
+	[INFO] Vector dimension: 200
+[TIME] Duration for char2vec: 0 min
+[MAIN] Char2clusters training...
+	[INFO] Number of clusters: 500
+[TIME] Duration for char2clusters: 0 min
+[MAIN] Cooccurrence matrix calculating...
+[TIME] Duration for cooccurrence matrix: 0 min
+[TIME] Total duration: 0 min
