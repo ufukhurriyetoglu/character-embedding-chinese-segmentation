@@ -31,7 +31,7 @@ def load_pickle(f):
 
 def get_cooccur_matrix(model, clusters, corpus_filename, n=2):
     # init matrix - (n-1)_distances x num_of_clusters x num_of_clusters
-    size = len(set(clusters))
+    size = max(clusters) + 1 
     cooccur_matrix = [[[0 for _ in range(size)] for _ in range(size)] for _ in range(n-1)]
 
     with open(corpus_filename, 'r') as fin:
