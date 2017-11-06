@@ -100,3 +100,4 @@ Interchanging between `gensim` and `word2vec`:
 |`from gensim.models import Word2Vec`|`import word2vec`|
 |`model.wv.index2word.index(char)`|`model.ix(char)`|
 |`model.syn0`|`model.vectors`|
+|`model.wv.index2word(char_idx)`|`model.vocab[char_idx]`|
