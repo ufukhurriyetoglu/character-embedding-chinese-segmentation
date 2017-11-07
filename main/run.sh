@@ -11,8 +11,9 @@ k=50
 preprocess=0
 char2vec=0
 algo="k_means"
+seg_algo="naive_threshold"
 
-while getopts "tpcd:k:a:" opt; do
+while getopts "tpcd:k:a:s:" opt; do
     case "$opt" in
         t)  test="-t"
             ;;
@@ -25,6 +26,8 @@ while getopts "tpcd:k:a:" opt; do
         k)  k=${OPTARG}
             ;;
         a)  algo=${OPTARG}
+            ;;
+        s)  seg_algo=${OPTARG}
             ;;
     esac
 done
@@ -49,8 +52,8 @@ if [ $preprocess -eq 1 ]; then
     echo "[$TIME] Duration for preprocessing: $(((end_0 - start) / 60)) min"
 fi
 
-if [ ! -d src/output/d_${vd}_k_${k}_${algo} ]; then
-    mkdir src/output/d_${vd}_k_${k}_${algo}
+if [ ! -d output/d_${vd}_k_${k}_${algo} ]; then
+    mkdir output/d_${vd}_k_${k}_${algo}
 fi
 
 # Char2vec

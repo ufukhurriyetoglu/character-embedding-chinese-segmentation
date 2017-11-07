@@ -22,4 +22,4 @@ done
 
 echo -e "\t[$INFO] Vector dimension: $vd"
 
-python3 -m src.char2vec.char2vec corpus/${pre}corpus_seg.txt -o src/output/d_${vd}_k_${k}_${algo}/${pre}char2vec.bin --vectordim ${vd}
+python3 -m src.char2vec.char2vec corpus/${pre}corpus_seg.txt -o output/d_${vd}_k_${k}_${algo}/${pre}char2vec.bin --vectordim ${vd}

@@ -21,12 +21,12 @@ while getopts "td:k:a:s:" opt; do
     esac
 done
 
-if [ ! -f src/output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}/${pre}seg.txt ]; then
-    if [ ! -d src/output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo} ]; then
-        mkdir src/output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}
+if [ ! -f output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}/${pre}seg.txt ]; then
+    if [ ! -d output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo} ]; then
+        mkdir output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}
     fi
 
-    touch src/output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}/${pre}seg.txt
+    touch output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}/${pre}seg.txt
 fi
 
-python3 -m src.segment.${seg_algo} corpus/segmentation/${pre}test.txt --model src/output/d_${vd}_k_${k}_${algo}/${pre}char2vec.bin --clusters src/output/d_${vd}_k_${k}_${algo}/${pre}char2clusters.bin --comatrix src/output/d_${vd}_k_${k}_${algo}/${pre}cooccur_matrix.bin --output src/output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}/${pre}seg.txt
+python3 -m src.segment.${seg_algo} corpus/segmentation/${pre}test.txt --model output/d_${vd}_k_${k}_${algo}/${pre}char2vec.bin --clusters output/d_${vd}_k_${k}_${algo}/${pre}char2clusters.bin --comatrix output/d_${vd}_k_${k}_${algo}/${pre}cooccur_matrix.bin --output output/segmentation/${seg_algo}/d_${vd}_k_${k}_${algo}/${pre}seg.txt
