@@ -54,6 +54,10 @@ def get_clusters(model, k=50):
     kmeans = cluster.KMeans(n_clusters=k, n_jobs=-1, random_state=0)
     cluster_idxs = kmeans.fit_predict(vectors)
 
+    # cluster special pause character 'p' by itself
+    p_idx = model.wv.index2word.index('p')
+    cluster_idxs[p_idx] = max(cluster_idxs) + 1
+
     return cluster_idxs
 
 def main():

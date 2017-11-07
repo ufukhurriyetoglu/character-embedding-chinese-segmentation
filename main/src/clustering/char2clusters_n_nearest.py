@@ -89,7 +89,11 @@ def get_clusters(model, k=10, threshold=0):
 
         cluster_idx += 1
 
-    print('Number of clusters: {}'.format(cluster_idx))
+    # cluster special pause character 'p' by itself
+    p_idx = model.wv.index2word.index('p')
+    cluster_idxs[p_idx] = cluster_idx + 1 
+
+    print('Number of clusters: {}'.format(cluster_idx + 1))
 
     return cluster_idxs
 
