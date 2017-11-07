@@ -67,11 +67,10 @@ def segment(fin_name, fout_name, model, clusters, cooccur_matrix):
                         results.append(last)
                         last = ''
 
-                if last != '':
-                    results.append(last)
+                results.append(last + split_line[-1])
 
                 # write to file
-                fout.write('　'.join(results) + '\n') 
+                fout.write('　'.join(results)) 
 
 def main():
     args = parse_args()
