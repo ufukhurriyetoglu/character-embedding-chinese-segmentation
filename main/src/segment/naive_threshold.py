@@ -56,7 +56,7 @@ def segment(fin_name, fout_name, model, clusters, cooccur_matrix):
 
                 connection_strengths = [0] + [connection_strength(c1, c2, 1, model, clusters, cooccur_matrix) for c1, c2 in zip(split_line, split_line[1:])] + [0]
                 mid_points = [(a + b) / 2 for a, b in zip(connection_strengths, connection_strengths[2:])]
-                seg = [s <= mp for s, mp in zip(connection_strengths[1:-1], mid_points)]
+                seg = [s < mp for s, mp in zip(connection_strengths[1:-1], mid_points)]
 
                 # results in word list
                 results = []
