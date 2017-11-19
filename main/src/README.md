@@ -65,7 +65,7 @@
 
     # or interactive interface
 
-    $ python3 char2clusters.py <model-file> -k <num-of-clusters>
+    $ python3 char2clusters.py <model-file> --clusters <cluster-file> -k <num-of-clusters>
 
     >>> Input a Chinese character (q to quit):
     工
